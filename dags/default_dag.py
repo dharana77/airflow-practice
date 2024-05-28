@@ -16,7 +16,7 @@ dag = DAG(
     'PythonOperator',
     default_args=default_args,
     description='A simple tutorial DAG',
-    schedule_interval=timedelta(days=1),
+    schedule=timedelta(days=1),
     start_date=datetime(2023, 8, 12),
     catchup=False,
 )
