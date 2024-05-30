@@ -3,6 +3,7 @@ from datetime import timedelta, datetime
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 
+
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
@@ -22,12 +23,15 @@ dag = DAG(
 )
 
 
-def print_hello():
-    return "hello!"
+def print_name(name):
+   print(f"Hello, {name}")
 
 
-hello_operator = PythonOperator(
-    task_id="say_hello",
-    python_callable=print_hello,
-    dag=dag,
+task_with_args = PythonOperator(
+    task_id="print_name_task",
+    python_callable=print_name,
+    op_args=["Airflow"],
+    dag=dag
 )
+
+
